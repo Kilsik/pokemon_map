@@ -80,9 +80,11 @@ def show_pokemon(request, pokemon_id):
         add_pokemon(
             folium_map, pokemon_entity.lat,
             pokemon_entity.lon,
-            request.build_absolute_uri(requested_pokemon.image.url)
+            request.build_absolute_uri(pokemon.image.url)
         )
-    print(request)
+    pokemon_on_page = {
+        'img_url': requested_pokemon.image.url,
+        'title_ru': requested_pokemon.title_ru}
     return render(request, 'pokemon.html', context={
-        'map': folium_map._repr_html_(), 'pokemon': requested_pokemon,
+        'map': folium_map._repr_html_(), 'pokemon': pokemon_on_page,
     })
