@@ -23,7 +23,10 @@
 ```sh
 pip install -r requirements.txt
 ```
-
+Для создания базы данных запустите миграцию:
+```sh
+python3 manage.py migrate
+```
 Запустите разработческий сервер
 
 ```sh
