@@ -19,7 +19,8 @@ class Pokemon(models.Model):
 
 
 class PokemonEntity(models.Model):
-    pokemon = models.ForeignKey(Pokemon, on_delete=models.PROTECT)
+    pokemon = models.ForeignKey(Pokemon, on_delete=models.PROTECT,
+        verbose_name='Покемон')
     lat = models.FloatField(verbose_name='Широта')
     lon = models.FloatField(verbose_name='Долгота')
     appeared_at = models.DateTimeField(verbose_name='Появился', null=True,
