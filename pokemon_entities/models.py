@@ -12,7 +12,7 @@ class Pokemon(models.Model):
     description = models.TextField(verbose_name='Описание', blank=True, null=True)
     previous_evolution = models.ForeignKey('self',
         verbose_name='Из кого эволюционирует', null=True, blank=True,
-        on_delete=models.SET_NULL, related_name='next_evolution')
+        on_delete=models.SET_NULL, related_name='next_evolutions')
 
     def __str__(self):
         return self.title_ru
