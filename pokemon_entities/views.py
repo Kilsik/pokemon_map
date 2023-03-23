@@ -84,7 +84,7 @@ def show_pokemon(request, pokemon_id):
         )
     previous_evolution = requested_pokemon.previous_evolution
     try:
-        next_evolution = requested_pokemon.next_evolution.get(
+        next_evolution = requested_pokemon.next_evolutions.get(
             previous_evolution=requested_pokemon.id
             )
     except Pokemon.DoesNotExist:
