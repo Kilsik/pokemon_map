@@ -19,7 +19,6 @@ TIME_ZONE = 'Europe/Moscow'
 
 
 def add_pokemon(folium_map, lat, lon, image_url=DEFAULT_IMAGE_URL):
-    print(image_url)
     icon = folium.features.CustomIcon(
         image_url,
         icon_size=(50, 50),
@@ -44,14 +43,14 @@ def show_all_pokemons(request):
             add_pokemon(
                 folium_map, pokemon_entity.lat,
                 pokemon_entity.lon,
-                pokemon.image.url
+                request.build_absolute_uri(pokemon.image.url)
             )
 
     pokemons_on_page = []
     for pokemon in pokemons:
         pokemons_on_page.append({
             'pokemon_id': pokemon.id,
-            'img_url': pokemon.image.url,
+            'img_url': request.build_absolute_uri(pokemon.image.url),
             'title_ru': pokemon.title_ru,
         })
 
@@ -85,7 +84,7 @@ def show_pokemon(request, pokemon_id):
         )
     previous_evolution = requested_pokemon.previous_evolution
     try:
-        next_evolution = requested_pokemon.next_evolutions.get(
+        next_evolution = requested_pokemon.next_evolution.get(
             previous_evolution=requested_pokemon.id
             )
     except Pokemon.DoesNotExist:
