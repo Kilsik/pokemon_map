@@ -77,12 +77,8 @@ def show_pokemon(request, pokemon_id):
             request.build_absolute_uri(pokemon.image.url)
         )
     previous_evolution = requested_pokemon.previous_evolution
-    try:
-        next_evolution = requested_pokemon.next_evolutions.get(
-            previous_evolution=requested_pokemon.id
-            )
-    except Pokemon.DoesNotExist:
-        next_evolution = None
+    next_evolution = requested_pokemon.next_evolutions.filter(
+            previous_evolution=requested_pokemon.id).first()
     print(next_evolution)
     previous_pokemon = None
     next_pokemon = None
