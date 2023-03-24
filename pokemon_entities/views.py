@@ -39,7 +39,6 @@ def show_all_pokemons(request):
 
     folium_map = folium.Map(location=MOSCOW_CENTER, zoom_start=12)
     for pokemon_entity in pokemon_entities:
-        print(pokemon_entity.pokemon)
         add_pokemon(
             folium_map, pokemon_entity.lat,
             pokemon_entity.lon,
@@ -79,7 +78,6 @@ def show_pokemon(request, pokemon_id):
     previous_evolution = requested_pokemon.previous_evolution
     next_evolution = requested_pokemon.next_evolutions.filter(
             previous_evolution=requested_pokemon.id).first()
-    print(next_evolution)
     previous_pokemon = None
     next_pokemon = None
     if previous_evolution:
